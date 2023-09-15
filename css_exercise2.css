@@ -1,0 +1,20 @@
+thead {
+    text-transform: uppercase;
+}
+
+section a {
+    color: green;
+}
+
+.top {
+    background-color: #ff4b01;
+}
+
+em {
+    background-color: blue;
+}
+
+#the_most_important {
+    text-transform: uppercase ;
+    background-color: gold;
+}
