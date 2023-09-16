@@ -18,3 +18,50 @@ em {
     text-transform: uppercase ;
     background-color: gold;
 }
+
+h2 {
+    font-family: sans-serif;
+}
+
+h1,h2,h3 {
+    text-transform: capitalize;
+}
+
+h2+p::first-letter {
+    font-size: x-large;
+}
+
+tbody tr:hover , tbody tr:hover td {
+    background-color: orange;
+}
+
+nav li {
+    display: inline;
+}
+
+nav li:first-child {
+    text-decoration: underline;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: gray;
+}
+
+::selection {
+    background-color: aqua;
+}
+
+section a:hover {
+    cursor:pointer ;
+}
+
+input[name="message"] {
+    height: 50;
+}
+
+input {
+    height: 20;
+    border-color: lightgray;
+}
+
+
