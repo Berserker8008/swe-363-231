@@ -1,10 +1,15 @@
 
 
+
+body:hover {
+    background: #011627;
+}
 body {
     border-radius: 8px;
     border: 1px solid #1E2D3D;
-    background: #011627;
+    background: #01203a;
     color:#E5E9F0;
+    transition: background 2s ease;
 }
 
 ul li a {
