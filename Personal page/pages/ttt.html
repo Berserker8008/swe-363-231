@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .cell {
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: bolder;
+            background-color: beige;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cell:hover {
+            background-color: blanchedalmond;
+        }
+
+        .row {
+            display: flex;
+        }
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: darkcyan;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Hover effect */
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="turn">
+        Now it's is <span>X</span> turn
+    </h1>
+    <!-- Board -->
+    <div class="board">
+        <div class="row">
+            <div class="cell" id="0"></div>
+            <div class="cell" id="1"></div>
+            <div class="cell" id="2"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="3"></div>
+            <div class="cell" id="4"></div>
+            <div class="cell" id="5"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="6"></div>
+            <div class="cell" id="7"></div>
+            <div class="cell" id="8"></div>
+        </div> 
+    </div>
+    <button id="resetbtn">Reset</button>
+        <script>
+
+            // decided which turn is it
+            let turn = "X"
+            let gameEnded = false
+            let moves = 0
+            const winCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], 
+                            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                            [0, 4, 8], [2, 4, 6]   ];
+            
+            // when we click on a cell add the letter 
+            let board = document.getElementsByClassName("board")[0]
+            board.addEventListener("click", cellClicked)
+
+            let reset = document.getElementById("resetbtn")
+            reset.addEventListener("click",resetBoard)
+
+            title = document.querySelector("#turn")
+            function cellClicked(event) {
+                moves = moves + 1
+                let cell = event.target
+                cell.innerText = turn
+                cell.style.backgroundColor = "blanchedalmond"
+                gameEnded = end()
+                if (gameEnded) {
+                    // HW
+                    title.innerText = "Game Over " + turn + " wins"
+                    board.removeEventListener("click",cellClicked)
+                } 
+                else if (moves ===9){
+                    title.innerText = "Game Over it is a Draw"
+                }
+                else {
+                    // change turn
+                    turn = turn === "X" ? "O" : "X"
+                    //change title
+                    turnLetter = document.querySelector("#turn span")
+                    turnLetter.innerText = turn
+                }
+            }
+            function end() {
+                // check col
+                for (let win of winCombos) {
+                    let [a,b,c] = win;
+                    let cells = document.getElementsByClassName("cell")
+                    if(cells[a].innerText === turn && cells[b].innerText === turn && cells[c].innerText === turn){
+                        return true
+                    }
+                }
+                return false
+            }
+
+            function resetBoard() {
+                gameEnded = false
+                board.addEventListener("click", cellClicked)
+                turn = "X"
+                moves = 0
+                title.innerText = "Now it's is X turn"
+                let cells = document.getElementsByClassName("cell")
+                for (let cell of cells) {
+                    cell.innerText = ""
+                    cell.style.backgroundColor = "beige"
+                }
+            }
+
+
+            
+        </script>
+    </div>
+</body>
+
+</html>
