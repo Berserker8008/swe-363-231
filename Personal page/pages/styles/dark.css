@@ -41,6 +41,40 @@ p {
     line-height: normal;
 }
 
+ul * {
+    display: inline;
+    margin-right: 4px;
+}
+
+ul p{
+    color: rgb(0, 0, 0, 0);
+    text-decoration: none;
+    transition: color 0.2s
+    
+}
+
+#nav2{
+    transition-delay: 0.1s;
+}
+
+#nav3{
+    transition-delay: 0.2s;
+}
+
+#nav4{
+    transition-delay: 0.3s;
+}
+
+a {
+    text-decoration: none;
+}
+ul:hover a {
+    text-decoration: underline #E5E9F0 ;
+}
+ul:hover p{
+    color: #E5E9F0;
+}
+
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -66,7 +100,7 @@ div.over{
 
 @keyframes fadeout {
     0% { opacity: 1; }
-    100% { opacity: 0; }
+    100% { opacity: 0; display: none; }
 }
 @keyframes spin {
     0% { transform: rotate(0deg); }
