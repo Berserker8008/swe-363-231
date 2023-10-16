@@ -37,6 +37,10 @@
             <p> i spend most of my time at the gym training to be a powerlifter
                 still weak lol.</p>
         </aside>
+
+        <div>
+            <canvas id="weather"></canvas>
+        </div>
         
         <footer>
             <p> @ 2023 Daniel Alsadiq </p>
@@ -44,16 +48,51 @@
             <a href="Cars.html"> secret</a>
         </footer>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
 
-        async function getAdvice() {
-            const response = await fetch("https://api.adviceslip.com/advice");
-            const advice = await response.json();
-            const advCont = document.querySelector("body header div p")
-            advCont.textContent = advice.slip.advice
-        }
+            const apikey = '9c390dc8b6cbbe6a31e447fb45bc67d9';
+            const city = 'Riyadh';
 
-        getAdvice()
+            async function getWeather() {
+                const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&id=524901&appid=9c390dc8b6cbbe6a31e447fb45bc67d9`);
+                const data = await response.json();
+                const timestamps = data.list.map(i => i.dt_txt);
+                const temp = data.list.map(i => i.main.temp -273.15)
+                console.log({timestamps,temp})
+                return {timestamps,temp};
+            }
+
+
+            async function createChart(){
+                const {timestamps,temp} = await getWeather();
+                const canva = document.querySelector('#weather').getContext('2d');
+                new Chart(canva, {
+                    type: 'line',
+                    data: {
+                        labels: timestamps,
+                        datasets: [{
+                            label: `Temperature in ${city}`,
+                            data: temp,
+                            bordercolor: 'red',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                })
+            }
+
+            async function getAdvice() {
+                const response = await fetch("https://api.adviceslip.com/advice");
+                const advice = await response.json();
+                const advCont = document.querySelector("body header div p")
+                advCont.textContent = advice.slip.advice
+            }
+
+            createChart();
+            getAdvice();
         </script>
     </body>
 </html>
