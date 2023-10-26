@@ -1,45 +1,21 @@
-cars = 
-[
-    {
-        src:"assets/gt3rs.png",
-        model:"Porsche 911 GT3 RS",
-        year:"2023",
-        price:"$223,800"
-
-    },
-
-    {
-        src:"assets/miata.png",
-        model:"Mazda Miata Mx 5",
-        year:"1995",
-        price:"$14,995"
-
-    },
-
-    {
-        src:"assets/f40.png",
-        model:"Ferrari F40",
-        year:"1992",
-        price:"$1,017,000"
-
-    },
-
-    {
-        src:"assets/p1.png",
-        model:"McLaren P1",
-        year:"2013",
-        price:"$1,150,000"
-
-    },
-
-    {
-        src:"assets/mk4.png",
-        model:"Toyota Supra MK4",
-        year:"1993",
-        price:"$21,400"
-
+class Car {
+    constructor(src, model, year, price) {
+        this.src = src;
+        this.model = model;
+        this.year = year;
+        this.price = price;
     }
+}
+
+const cars = [
+    new Car("assets/gt3rs.png", "Porsche 911 GT3 RS", "2023", "$223,800"),
+    new Car("assets/miata.png", "Mazda Miata Mx 5", "1995", "$14,995"),
+    new Car("assets/f40.png", "Ferrari F40", "1992", "$1,017,000"),
+    new Car("assets/p1.png", "McLaren P1", "2013", "$1,150,000"),
+    new Car("assets/mk4.png", "Toyota Supra MK4", "1993", "$21,400")
 ];
+
+
 
 const container = document.querySelector("body div");
 
