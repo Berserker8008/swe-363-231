@@ -57,7 +57,7 @@
             const getWeather = async () => {
             const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&id=524901&appid=${apikey}`);
             const data = await response.json();
-
+                //exercise 3
             const extractTimestamps = () => data.list.map(item => item.dt_txt);
             const extractTemperatures = () => data.list.map(item => item.main.temp - 273.15);
 
