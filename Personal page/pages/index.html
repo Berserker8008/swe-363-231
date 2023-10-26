@@ -50,49 +50,55 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
-
+            
             const apikey = '9c390dc8b6cbbe6a31e447fb45bc67d9';
             const city = 'Riyadh';
 
-            async function getWeather() {
-                const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&id=524901&appid=9c390dc8b6cbbe6a31e447fb45bc67d9`);
-                const data = await response.json();
-                const timestamps = data.list.map(i => i.dt_txt);
-                const temp = data.list.map(i => i.main.temp -273.15)
-                console.log({timestamps,temp})
-                return {timestamps,temp};
-            }
+            const getWeather = async () => {
+            const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&id=524901&appid=${apikey}`);
+            const data = await response.json();
 
+            const extractTimestamps = () => data.list.map(item => item.dt_txt);
+            const extractTemperatures = () => data.list.map(item => item.main.temp - 273.15);
 
-            async function createChart(){
-                const {timestamps,temp} = await getWeather();
-                const canva = document.querySelector('#weather').getContext('2d');
-                new Chart(canva, {
-                    type: 'line',
-                    data: {
-                        labels: timestamps,
-                        datasets: [{
-                            label: `Temperature in ${city}`,
-                            data: temp,
-                            bordercolor: 'red',
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                    }
-                })
-            }
+            const timestamps = extractTimestamps();
+            const temp = extractTemperatures();
+            
+            console.log({ timestamps, temp });
+            return { timestamps, temp };
+            };
 
-            async function getAdvice() {
-                const response = await fetch("https://api.adviceslip.com/advice");
-                const advice = await response.json();
-                const advCont = document.querySelector("body header div p")
-                advCont.textContent = advice.slip.advice
-            }
+            const createChart = async () => {
+            const { timestamps, temp } = await getWeather();
+            const canvas = document.querySelector('#weather').getContext('2d');
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                labels: timestamps,
+                datasets: [{
+                    label: `Temperature in ${city}`,
+                    data: temp,
+                    borderColor: 'red', // corrected property name
+                }]
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                }
+            });
+            };
+
+            const getAdvice = async () => {
+            const response = await fetch("https://api.adviceslip.com/advice");
+            const advice = await response.json();
+            const advCont = document.querySelector("body header div p");
+            advCont.textContent = advice.slip.advice;
+            };
 
             createChart();
             getAdvice();
+
         </script>
     </body>
 </html>
