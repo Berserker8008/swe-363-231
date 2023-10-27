@@ -1,0 +1,37 @@
+.hello-world-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.hello-world-heading {
+font-size: 36px;
+color: #333;
+}
+
+.hello-world-description {
+font-size: 18px;
+color: #555;
+margin: 10px 0;
+}
+
+.hello-world-button {
+padding: 10px 20px;
+background-color: #007BFF;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.hello-world-button:hover {
+background-color: #0056b3;
+}
+
+.hello-world-message {
+font-size: 18px;
+color: #27ae60;
+margin-top: 10px;
+}
