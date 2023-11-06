@@ -1,0 +1,7 @@
+Exercise 1)
+- https://blackboard.kfupm.edu.sa
+- ip : 10.142.24.14:443
+- 36 requests
+- Document,style,script,image,gif,ico,font
+- 15.6kb
+- 2.49s
