@@ -14,6 +14,7 @@ fs.readdirSync(routespath).forEach(file => {
   app.use('/', route);
 });
 
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
